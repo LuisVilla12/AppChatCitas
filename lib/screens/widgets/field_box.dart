@@ -32,6 +32,7 @@ class FieldBox extends StatelessWidget {
         suffixIcon: 
         IconButton(onPressed: (){
           final textValue=textController.value.text;
+          if(textValue=='') return;
           // Llama el metodo
           onValue(textValue);
           // print(textValue);
@@ -55,6 +56,7 @@ class FieldBox extends StatelessWidget {
       onFieldSubmitted: (value){
         // print('Enviaste el formulario $value');
         // Limpiar input
+        if (value=='') return;
         onValue(value);
         textController.clear();
         // Seguir con el enfoque

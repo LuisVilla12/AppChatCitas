@@ -6,7 +6,6 @@ class MyMessage extends StatelessWidget {
   // Contructor principal
   const MyMessage({super.key, required this.message});
 
-
   @override
   Widget build(BuildContext context) {
     // final messageFinal=
