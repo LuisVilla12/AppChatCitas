@@ -51,7 +51,7 @@ class ChatView extends StatelessWidget {
               //Construcción de elementos de la lista
               itemBuilder: (context, index){
                 final message=chatProvider.messagesList[index];
-                return (message.fromWho==FromWho.me? MyMessage(message:message):HerMessage());
+                return (message.fromWho==FromWho.me? MyMessage(message:message):HerMessage(message:message));
               } )),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 25),

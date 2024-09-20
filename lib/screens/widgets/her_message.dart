@@ -1,7 +1,8 @@
+import 'package:chat_static/domain/entities/Message.dart';
 import 'package:flutter/material.dart';
 class HerMessage extends StatelessWidget {
-  const HerMessage({super.key});
-
+  final Message message;
+  const HerMessage({super.key, required this.message});
   @override
   Widget build(BuildContext context) {
     // Asigna el color del tema que fue asignado 
@@ -12,14 +13,14 @@ class HerMessage extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(color: colors.secondary, borderRadius: BorderRadius.circular(15)),
-          child: const Padding(
-            padding:  EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child:  Text('Hello, i am Iron Man', style: TextStyle(color: Colors.white)),
+          child: Padding(
+            padding:  const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child:  Text(message.text, style: TextStyle(color: Colors.white)),
           ),
         ),
         // Dejer espacio entre mensajes
         const SizedBox(height: 5),
-        _ImageMessage(),
+        _ImageMessage(imagenURL: message.imgURL!),
         const SizedBox(height: 5),
       ],
     );
@@ -27,13 +28,16 @@ class HerMessage extends StatelessWidget {
 }
 
 class _ImageMessage extends StatelessWidget {
+  final String imagenURL;
+
+  const _ImageMessage({required this.imagenURL});
   @override
   Widget build(BuildContext context) {
     final size=MediaQuery.of(context).size;
 //    print(size);
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-      child: Image.network("https://yesno.wtf/assets/yes/9-6403270cf95723ae4664274db51f1fd4.gif", width: size.width*.7, height: 150, fit: BoxFit.cover, 
+      child: Image.network(imagenURL, width: size.width*.7, height: 150, fit: BoxFit.cover, 
       loadingBuilder: (context, child, loadingProgress) {
         // Si ya cargo la imagen que la regrese
         if(loadingProgress==null) return child;
